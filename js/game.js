@@ -4,6 +4,8 @@
 let player;
 let enemy;
 let cursors;
+let background;
+let background2;
 
 /**
  * It prelaods all the assets required in the game.
@@ -19,9 +21,12 @@ function preload() {
  */
 function create() {
   // scene background
-  this.add.image(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "sky");
-
+  background= this.add.image(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "sky");
+  background2 = this.add.image(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "sky");
+  background2.setY(background2.y - background.height)
+  
   // playet setup
+  
   player = this.add.image(SCREEN_WIDTH / 2, SCREEN_HEIGHT, "player");
   player.setX((SCREEN_WIDTH - player.width * PLAYER_SCALE) / 2);
   player.setY(SCREEN_HEIGHT - (player.height * PLAYER_SCALE) / 2);
@@ -43,4 +48,15 @@ function create() {
 function update() {
   if (cursors.left.isDown) {
   }
+  background2.setY(background2.y + 1);
+  background.setY(background.y + 1);
+
+
+  if (background.y >= SCREEN_HEIGHT/2 + background.height) {
+    background.setY(background2.y - background.height)
+    const copiaBackground = background;
+    background = background2;
+    background2 = copiaBackground;
+  }
+  
 }
