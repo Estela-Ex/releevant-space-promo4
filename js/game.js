@@ -46,22 +46,32 @@ function create() {
  * Updates each game object of the scene.
  */
 function update() {
-  if (cursors.left.isDown && player.x > player.width / 2 * PLAYER_SCALE) {
+
+  /*MOVER PLAYER CON CURSORES*/
+  if (cursors.left.isDown && player.x > (player.width / 2) * PLAYER_SCALE) {
     player.setX(player.x - PLAYER_VELOCITY);
-  } else if ( cursors.right.isDown && player.x < SCREEN_WIDTH - player.width / 2 * PLAYER_SCALE) {
+  } else if (
+    cursors.right.isDown &&
+    player.x < SCREEN_WIDTH - (player.width / 2) * PLAYER_SCALE
+  ) {
     player.setX(player.x + PLAYER_VELOCITY);
   }
-  if (cursors.up.isDown && player.y > player.height / 2 * PLAYER_SCALE) {
+  if (cursors.up.isDown && player.y > (player.height / 2) * PLAYER_SCALE) {
     player.setY(player.y - PLAYER_VELOCITY);
   } else if (
     cursors.down.isDown &&
-    player.y < SCREEN_HEIGHT - player.height / 2 * PLAYER_SCALE
+    player.y < SCREEN_HEIGHT - (player.height / 2) * PLAYER_SCALE
   ) {
     player.setY(player.y + PLAYER_VELOCITY);
   }
-
+/*MOVER ENEMIGO*/
+  enemy.setY(enemy.y + ENEMY_VELOCITY);
+  enemy.setX(enemy.x + (player.x >= enemy.x ? 1 : -1) * ENEMY_VELOCITY)
   
-
+  
+  
+  
+ 
   background2.setY(background2.y + 5);
   background.setY(background.y + 5);
 
